@@ -19,10 +19,13 @@ router.get('/', function(req, res, next) {
 
 /* Auth */
 router.get('/auth', (req, res, next) => {
-    bigCommerce.authorize(req.query)
-        .then(data => res.render('integrations/auth', { title: 'Authorized!', data: data })
-            .catch(next)
-    );
+    try {
+      const data = bigCommerce.authorize(req.query);
+      console.log(data)
+      res.render('ntegrations/auth', { title: 'Authorized!', data: data });
+    } catch (err) {
+      next(err);
+    }
 })
 
 /* Load */
