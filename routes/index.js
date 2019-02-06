@@ -29,7 +29,6 @@ router.get('/auth', (req, res, next) => {
 router.get('/load', (req, res, next) => {
   try {
     const data = bigCommerce.verify(req.query['signed_payload']);
-      data.auth= req.cookies.auth;
     res.render('integrations/load', { title: 'Load!', data: data });
   } catch (err) {
     next(err);
