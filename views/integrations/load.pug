@@ -1,10 +1,11 @@
 extends ../layout
 
 block content
-  h1= title
+    h1= title
     ul
-        li= 'Access token' + ': ' + data.access_token
-        li= 'Scope' + ': ' + data.scope
         li= 'User Id' + ': ' + data.user.id
         li= 'User Email' + ': ' + data.user.email
         li= 'Context' + ': ' + data.context
+        li= 'Store_hash' + ': ' + data.store_hash
+        li= 'Timestamp' + ': ' + data.timestamp
+

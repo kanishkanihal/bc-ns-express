@@ -28,8 +28,16 @@ router.get('/auth', (req, res, next) => {
 /* Load */
 router.get('/load', (req, res, next) => {
   try {
-    const data = bigCommerce.verify(req.query['signed_payload']);
-    res.render('integrations/welcome', { title: 'Load!', data: data });
+    const data = {
+        user: {
+            id: 12345,
+            email: 'john@success.com'
+        },
+        context: 'stores/x43tqo',
+        store_hash: 'x43tqo',
+        timestamp: 1421748597.4395974
+    }
+    res.render('integrations/load', { title: 'Load!', data: data });
   } catch (err) {
     next(err);
   }
