@@ -23,6 +23,7 @@ router.get('/auth', (req, res, next) => {
         .then(data => res.render('integrations/auth', { title: 'Authorized!', data: data })
             .catch(next)
     );
+    console.log(bigCommerce);
 })
 
 /* Load */
