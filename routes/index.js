@@ -22,7 +22,7 @@ router.get('/auth', (req, res, next) => {
     try {
       const data = bigCommerce.authorize(req.query);
       console.log(data)
-      res.render('ntegrations/auth', { title: 'Authorized!', data: data });
+      res.render('integrations/auth', { title: 'Authorized!', data: data });
     } catch (err) {
       next(err);
     }
