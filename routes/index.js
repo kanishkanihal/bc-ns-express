@@ -17,11 +17,22 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Netstarter Big commerce' });
 });
 
+/* Auth */
 router.get('/auth', (req, res, next) => {
   bigCommerce.authorize(req.query)
       .then(data => res.render('integrations/auth', { title: 'Authorized!', data: data })
           .catch(next)
   )
+});
+
+/* Load */
+router.get('/load', (req, res, next) => {
+  try {
+    const data = bigCommerce.verify(req.query['signed_payload']);
+    res.render('integrations/welcome', { title: 'Load!', data: data });
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
