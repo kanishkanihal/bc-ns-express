@@ -13,17 +13,17 @@ const bigCommerce = new BigCommerce({
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index', { title: 'Netstarter Big commerce' });
 });
 
 /* Auth */
 router.get('/auth', (req, res, next) => {
-    bigCommerce.authorize(req.query)
-        .then(data => res.render('integrations/auth', { title: 'Authorized!', data: data })
-            .catch(next)
-    );
-    console.log(bigCommerce);
+  bigCommerce.authorize(req.query)
+    .then(data => res.render('integrations/auth', { title: 'Authorized!', data: data })
+      .catch(next)
+    ).then (data => {console.log(data)});
+  console.log(bigCommerce);
 })
 
 /* Load */
