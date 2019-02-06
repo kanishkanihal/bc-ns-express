@@ -20,15 +20,18 @@ router.get('/', function(req, res, next) {
 /* Auth */
 router.get('/auth', (req, res, next) => {
   bigCommerce.authorize(req.query)
-      .then(data => res.render('integrations/auth', { title: 'Authorized!', data: data })
-          .catch(next)
-  )
+      .then(
+          data => res.render('integrations/auth', { title: 'Authorized!', data: data }),
+          res.cookie('auth',data.access_token),
+
+  ).catch(next)
 });
 
 /* Load */
 router.get('/load', (req, res, next) => {
   try {
     const data = bigCommerce.verify(req.query['signed_payload']);
+      data.auth= req.cookies.auth;
     res.render('integrations/load', { title: 'Load!', data: data });
   } catch (err) {
     next(err);
