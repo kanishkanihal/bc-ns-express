@@ -23,6 +23,8 @@ router.get('/auth', (req, res, next) => {
     .then(data => {
       console.log("----------------------------------");
       console.log("Access token => "+data.access_token);
+      console.log("User ID => "+data.user.id);
+      console.log("User => "+data.user);
       console.log("----------------------------------");
       res.render('integrations/auth', { title: 'Authorized!', data: data }).catch(next)
     }
